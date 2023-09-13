@@ -67,8 +67,8 @@ The Movie Download Website is a platform for users to access and download movies
    measurementId: "YOUR_MEASUREMENT_ID"
     };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
 3. paste it on your firebase-config.js file
 
