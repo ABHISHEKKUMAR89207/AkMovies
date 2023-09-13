@@ -34,7 +34,7 @@ The Movie Download Website is a platform for users to access and download movies
 
 
 ### Screenshots
-
+ ##Users
 <div style="display: flex; justify-content: space-between;">
   <img src="img/ak1.png" width="400">
   <img src="img/ak2.png" width="400">
@@ -45,10 +45,15 @@ The Movie Download Website is a platform for users to access and download movies
             <img src="img/ak7.png" width="400">
               <img src="img/ak8.png" width="400">
                 <img src="img/ak9.png" width="400">
-
-  
 </div>
-
+##admin
+<div style="display: flex; justify-content: space-between;">
+  <img src="img/ak10.png" width="400">
+  <img src="img/ak11.png" width="400">
+    <img src="img/ak12.png" width="400">
+     
+                <img src="img/ak9.png" width="400">
+</div>
 ## Getting Started
 
 ### Prerequisites
