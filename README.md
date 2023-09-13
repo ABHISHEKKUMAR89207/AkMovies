@@ -38,6 +38,7 @@ The Movie Download Website is a platform for users to access and download movies
 <div style="display: flex; justify-content: space-between;">
   <img src="img/ak1.png" width="400">
   <img src="img/ak1.png" width="400">
+  <img src="img/ak1.png" width="400">
   
 </div>
 
