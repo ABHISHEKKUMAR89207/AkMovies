@@ -64,5 +64,6 @@ Before setting up the project, make sure you have the following prerequisites in
 
 ### Installation
 
-1. Clone this repository to your local machine using the following command:
+1. Clone this repository to your local machine :
 
+Happy Coding......
