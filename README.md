@@ -55,5 +55,20 @@ The Movie Download Website is a platform for users to access and download movies
 ### Installation
 
 1. Clone this repository to your local machine :
+2. generate this By register your Website on Firebase:
+   const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+  measurementId: "YOUR_MEASUREMENT_ID"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+3. paste it on your firebase-config.js file
 
 Happy Coding......
