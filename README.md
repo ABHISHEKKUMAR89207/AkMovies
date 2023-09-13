@@ -26,17 +26,19 @@ The Movie Download Website is a platform for users to access and download movies
 
 - **Download Movies**: Users can download movies in various formats and quality options.
 
-- **User Accounts**: Registered users can create accounts, manage their profiles, and keep track of their downloads.
 
 ### Technologies Used
 
 - Firebase: Firebase is used for authentication, storage, and hosting.
 - HTML, CSS, JavaScript: Front-end development.
-- [List any other technologies or libraries used in your project.]
+
 
 ### Screenshots
 
-[Include screenshots or GIFs of your website in action.]
+<div style="display: flex; justify-content: space-between;">
+  <img src="img/ak1.jpg" width="300">
+  
+</div>
 
 ## Getting Started
 
