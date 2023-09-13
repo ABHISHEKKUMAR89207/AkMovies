@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Movies</title>
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <!-- Include your own Firebase config -->
+    <script src="firebase-config.js"></script>
+    <style>
+      body {
+          background-color: #121212;
+          color: #ffffff;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+      }
+
+      h1 {
+          color: #FFA500;
+          text-align: center;
+          margin-top: 20px;
+      }
+
+      ul {
+          list-style-type: none;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+
+      li {
+          background-color: #333333;
+          border-radius: 8px;
+          margin: 20px;
+          padding: 20px;
+          width: 300px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+          color: #FFA500;
+          font-size: 20px;
+          margin: 0;
+      }
+
+      p {
+          color: #ccc;
+          margin: 10px 0;
+      }
+
+      ul.awards-list {
+          padding-left: 20px;
+      }
+
+      li.award-item {
+          color: #ccc;
+      }
+
+      a.download-link {
+          color: #FFA500;
+          text-decoration: none;
+          font-weight: bold;
+          display: block;
+          margin-top: 10px;
+      }
+
+      a.download-link:hover {
+          text-decoration: underline;
+      }
+
+      img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 5px;
+      }
+      ul li{
+        background-color: #333333;
+        border-radius: 8px;
+        margin: 20px;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+  </style>
+</head>
+<body>
+    <h1 >List of Movies</h1>
+    
+    <ul id="movie-list"></ul>
+
+    <script>
+      const firebaseConfig = {
+  apiKey: "AIzaSyD1YmnryjHQ8fSOHXaYp4s7vOm-I4ghBPg",
+  authDomain: "movies-700da.firebaseapp.com",
+  projectId: "movies-700da",
+  storageBucket: "movies-700da.appspot.com",
+  messagingSenderId: "400931630235",
+  appId: "1:400931630235:web:b393ec20feee54f9e62a3e",
+  measurementId: "G-E5E48TYM33"
+};
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Reference to the "movies" collection
+        const moviesRef = db.collection('movies');
+
+        // Function to handle download link clicks
+        function handleDownloadClick(event) {
+    event.preventDefault();
+    const movieFieldId = event.target.getAttribute('data-id');
+    if (movieFieldId) {
+        // Redirect to another HTML page with the movie's field ID as a query parameter
+        window.location.href = `movie-details.html?fieldId=${movieFieldId}`;
+    }
+}
+
+
+        // Function to fetch and display movies
+        function fetchMovies() {
+            moviesRef.get().then((querySnapshot) => {
+                const movieList = document.getElementById('movie-list');
+                querySnapshot.forEach((doc) => {
+                    const movie = doc.data();
+                    movieList.innerHTML += `
+                        <li style="">
+                            <h2>${movie.title} (${movie.year})</h2>
+                            <p><strong>Genre:</strong> ${movie.genre.join(', ')}</p>
+                            <p><strong>Director:</strong> ${movie.director}</p>
+                            <p><strong>Actors:</strong> ${movie.actors.join(', ')}</p>
+                            <p><strong>Rating:</strong> ${movie.rating}</p>
+                            <p><strong>Plot:</strong> ${movie.plot}</p>
+                            <p><strong>Awards:</strong></p>
+                            
+                            <p><strong>Download:</strong> <a href="#" class="download-link" data-id="${movie.id}">Download</a></p>
+                          
+                        </li>
+                    `;
+                });
+
+                // Attach click event handlers to download links
+                const downloadLinks = document.querySelectorAll('.download-link');
+                downloadLinks.forEach((link) => {
+                    link.addEventListener('click', handleDownloadClick);
+                });
+            }).catch((error) => {
+                console.error('Error getting movies: ', error);
+            });
+        }
+
+        // Call the function to fetch and display movies
+        fetchMovies();
+    </script>
+</body>
+</html>

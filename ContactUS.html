@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Us</title>
+    <link rel="stylesheet" href="Navbar.css">
+    <style>/* Existing CSS styles here */
+/* Reset some default styles */
+/* Reset some default styles */
+
+
+/* Apply basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: orange;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #555;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff7f00;
+}
+        </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ak Movies </div>
+            <div class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="ContactUS.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+   
+    <div class="container">
+        <h1>Contact Us</h1>
+        <div class="contact-form">
+            <form action="process_contact.php" method="post">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+         <script src="Navbar.js"></script>
+         <footer>
+            <p>&copy; 2023 Ak World. All rights reserved.</p>
+        </footer>
+</body>
+</html>

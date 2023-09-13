@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movies to Firestore</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <style>
+    
+  /* Styles for the navigation bar */
+  .NavBar {
+            background-color: #09343b;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .NavBar li {
+            display: inline;
+            margin-right: 20px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+        }
+
+        body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: orange;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+textarea ,input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #555;
+    color: white;
+    border-radius: 5px;
+}
+
+.formdecoratebutton {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formdecoratebutton:hover {
+    background-color: #ff7f00;
+}
+   </style>
+</head>
+<body>
+   <nav class="NavBar">
+    <li >Update</li>
+    <li>Add</li>
+   </nav>
+   <h1 style="color: aqua;">Admin Panel</h1>
+   <div class="container">
+  
+    <h1 style="color: aqua;">Add Movies to Data Base</h1>
+    <form id="movie-form" class="formdecorate" >
+        <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required><br>
+    </div> <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="number" id="year" required><br>
+    </div> <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" required><br>
+    </div> <div class="form-group">
+        <label for="director">Director:</label>
+        <input type="text" id="director" required><br>
+    </div>  <div class="form-group">
+        <label for="actors">Actors:</label>
+        <input type="text" id="actors" required><br>
+    </div>  <div class="form-group">
+        <label for="rating">Rating (0-10):</label>
+        <input type="number" step="0.1" id="rating" required max="10"><br>
+        
+    </div>  <div class="form-group">
+        <label for="plot">Plot:</label>
+        <textarea id="plot" required></textarea><br>
+    </div> <div class="form-group">
+        <label for="languages">Languages (comma-separated):</label>
+        <input type="text" id="languages" required><br>
+    </div> <div class="form-group">
+        <label for="images">Images (comma-separated URLs):</label>
+        <textarea id="images" required></textarea><br>
+    </div>  <div class="form-group">
+        <label for="downloadmyreviewvideos">download (comma-separated URLs):</label>
+        <textarea id="downloadmyreviewvideos" required></textarea><br>
+
+    </div>  <div class="form-group">
+        <label for="mainImage">Main Image URL:</label>
+        <input type="text" id="mainImage" required><br>
+    </div>
+        <button type="submit" class="formdecoratebutton">Add Movie</button>
+    </form>
+</div>
+    <footer>
+        <p>&copy; 2023 Ak World. All rights reserved.</p>
+    </footer>
+
+  <!-- Your HTML form remains the same -->
+
+<script>
+      // Get the value of the "username" query parameter from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get("username");
+
+        if (username === "trueadminhai") {
+            // The value is "trueadmin," so display the dashboard content
+            console.log("Welcome, trueadmin!");
+        } else {
+            // The value is not "trueadmin," so redirect to another page
+            console.log("Unknown user. Redirecting...");
+            window.location.href = "LogineAdmin.html"; // Replace with the desired page
+        }
+   const firebaseConfig = {
+  apiKey: "AIzaSyD1YmnryjHQ8fSOHXaYp4s7vOm-I4ghBPg",
+  authDomain: "movies-700da.firebaseapp.com",
+  projectId: "movies-700da",
+  storageBucket: "movies-700da.appspot.com",
+  messagingSenderId: "400931630235",
+  appId: "1:400931630235:web:b393ec20feee54f9e62a3e",
+  measurementId: "G-E5E48TYM33"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Reference to the "movies" collection
+    const moviesRef = db.collection('movies');
+
+    // Function to handle form submission
+    document.getElementById('movie-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Get form input values
+        const title = document.getElementById('title').value;
+        const year = parseInt(document.getElementById('year').value);
+        const genre = document.getElementById('genre').value.split(',').map(item => item.trim());
+        const director = document.getElementById('director').value;
+        const actors = document.getElementById('actors').value.split(',').map(item => item.trim());
+        const rating = parseFloat(document.getElementById('rating').value);
+        const plot = document.getElementById('plot').value;
+        const languages = document.getElementById('languages').value.split(',').map(item => item.trim());
+        const images = document.getElementById('images').value.split(',').map(item => item.trim());
+        const downloadmyreviewvideos = document.getElementById('downloadmyreviewvideos').value.split(',').map(item => item.trim());
+        const mainImage = document.getElementById('mainImage').value;
+
+        // Separate the data correctly
+        const movieData = {
+            title: title,
+            year: year,
+            genre: genre,
+            director: director,
+            actors: actors,
+            rating: rating,
+            plot: plot,
+            languages: languages,
+            images: images, // This field contains image URLs
+            downloadmyreviewvideos: downloadmyreviewvideos, // This field contains download URLs
+            mainImage: mainImage
+        };
+
+        // Add movie data to Firestore
+        moviesRef.add(movieData)
+            .then(function (docRef) {
+                console.log('Movie added with ID: ', docRef.id);
+                // Reset the form
+                document.getElementById('movie-form').reset();
+            })
+            .catch(function (error) {
+                console.error('Error adding movie: ', error);
+            });
+    });
+    // Reference to Firebase Authentication
+const auth = firebase.auth();
+
+// Logout button
+const logoutButton = document.getElementById("logout-button");
+
+// Function to check if a user is authenticated
+function checkAuthState() {
+    auth.onAuthStateChanged((user) => {
+        if (!user) {
+            // User is not authenticated, redirect to the login page
+            window.location.href = "login.html";
+        }
+    });
+}
+
+// Check authentication state when the dashboard page loads
+checkAuthState();
+
+// Add an event listener for the Logout button
+logoutButton.addEventListener("click", () => {
+    // Sign out the user
+    auth.signOut().then(() => {
+        // Redirect to the login page after logout
+        window.location.href = "login.html";
+    }).catch((error) => {
+        console.error("Error signing out:", error);
+    });
+});
+
+</script>
+
+</body>
+</html>

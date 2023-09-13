@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+
+    <!-- Include Firebase SDK scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <!-- Include other Firebase services if needed -->
+    <script src="firebase-config.js"></script>
+    <script src="Navbar.js"></script>
+    <link rel="stylesheet" href="Navbar.css">
+    <style>
+     body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    color: white;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: orange;
+}
+
+h2 {
+            color: yellow;
+            font-style: italic;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .download-link {
+            color: cyan;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 60%;
+            height: auto;
+            display: block; /* Remove any extra spacing below the images */
+            margin: 0 auto; /* Center the images horizontally */
+        }
+
+        /* Style the movie details container */
+        #movie-details {
+            background-color: #171515;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center; /* Center-align the content */
+        }
+
+        /* Style the download link button */
+        .download-link {
+            background-color: cyan;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: black;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .download-link:hover {
+            background-color: #00bcd4;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ak Movies</div>
+            <div class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="ContactUS.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <h1>Movie Details</h1>
+    <div id="movie-details"></div>
+
+    <script type="module">
+        // Function to parse query parameters from the URL
+        function getQueryParameter(name) {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            return urlSearchParams.get(name);
+        }
+
+        // Function to fetch and display movie details
+        function fetchMovieDetails() {
+            const movieFieldId = getQueryParameter('fieldId');
+            
+            const db = firebase.firestore();
+
+            // Reference to the "movies" collection
+            const moviesRef = db.collection('movies');
+
+            if (movieFieldId) {
+                const movieDetailsContainer = document.getElementById('movie-details');
+
+                console.log('Fetching movie details for ID:', movieFieldId);
+
+                moviesRef.where("id", "==", parseInt(movieFieldId)).get().then((querySnapshot) => {
+                    console.log('Query result:', querySnapshot.docs);
+
+                    if (!querySnapshot.empty) {
+                        const movieDoc = querySnapshot.docs[0];
+                        const movie = movieDoc.data();
+
+                        // Display movie details in the HTML
+                        movieDetailsContainer.innerHTML = `
+                        <img src="pxfuel (1).jpg" alt="${movie.title}" width="200">
+                            <h2>${movie.title} (${movie.year})</h2>
+                            <p><strong>Genre:</strong> ${movie.genre.join(', ')}</p>
+                            <p><strong>Director:</strong> ${movie.director}</p>
+                            <p><strong>Actors:</strong> ${movie.actors.join(', ')}</p>
+                            <p><strong>Languages:</strong> ${movie.languages.join(', ')}</p>
+                            <p><strong>Rating:</strong> ${movie.rating}</p>
+                            <p><strong>Plot:</strong> ${movie.plot}</p>
+                            <p><strong>Awards:</strong></p>
+                            <ul>
+                            <img src="pxfuel (3).jpg" alt="${movie.image}" >
+                        </ul>
+                            <ul>
+                            <img src="pxfuel (2).jpg" alt="${movie.title}" >
+                        </ul>
+                        <ul>
+                            <img src="pxfuel (2).jpg" alt="${movie.title}" >
+                        </ul>
+                            <ul>
+                            <img src="pxfuel.jpg" alt="${movie.title}">
+                        </ul>
+                            <p><strong>Download:</strong> <a href="#" class="download-link" data-id="${movie.fieldId}">Download</a></p>
+                            
+                        `;
+                    } else {
+                        movieDetailsContainer.innerHTML = '<p>Movie not found.</p>';
+                    }
+                }).catch((error) => {
+                    console.error('Error getting movie details: ', error);
+                });
+            } else {
+                console.error('Movie field ID not provided in query parameters.');
+            }
+        }
+
+        // Call the function to fetch and display movie details
+        fetchMovieDetails();
+    </script>
+</body>
+</html>

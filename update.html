@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movies to Firestore</title>
+</head>
+<body>
+    <h1>Add Movies to Firestore</h1>
+    <button id="addMovies">Add Movies</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        // Replace with your Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyD1YmnryjHQ8fSOHXaYp4s7vOm-I4ghBPg",
+  authDomain: "movies-700da.firebaseapp.com",
+  projectId: "movies-700da",
+  storageBucket: "movies-700da.appspot.com",
+  messagingSenderId: "400931630235",
+  appId: "1:400931630235:web:b393ec20feee54f9e62a3e",
+  measurementId: "G-E5E48TYM33"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById('addMovies').addEventListener('click', () => {
+            const moviesData = [
+  {
+    "id": 12,
+    "title": "Dilwale Dulhania Le Jayenge",
+    "year": 1995,
+    "genre": ["Romance", "Drama", "Comedy"],
+    "director": "Aditya Chopra",
+    "actors": ["Shah Rukh Khan", "Kajol"],
+    "rating": 8.2,
+    "plot": "A young man and woman meet on a trip to Europe and fall in love. However, they must overcome cultural and family obstacles to be together.",
+    "languages": ["Hindi", "Punjabi", "English"],
+    "images": [
+      "https://example.com/dilwale-dulhania-le-jayenge.jpg",
+      "https://example.com/dilwale-dulhania-le-jayenge-2.jpg"
+    ],
+    "mainImage": "https://example.com/dilwale-dulhania-le-jayenge-main.jpg",
+    "videoLinks": [
+      "https://example.com/dilwale-dulhania-le-jayenge-video1.mp4",
+      "https://example.com/dilwale-dulhania-le-jayenge-video2.mp4"
+    ]
+  },
+  {
+        "id": 21,
+        "title": "PK",
+        "year": 2014,
+        "genre": ["Comedy", "Drama", "Sci-Fi"],
+        "director": "Rajkumar Hirani",
+        "actors": ["Aamir Khan", "Anushka Sharma"],
+        "rating": 8.1,
+        "plot": "A stranger in the city asks questions that no one has asked before. His childlike curiosity will take him on a journey of love, laughter, and letting go.",
+        "languages": ["Hindi", "English"],
+        "images": [
+            "https://example.com/pk.jpg",
+            "https://example.com/pk-2.jpg"
+        ],
+        "mainImage": "https://example.com/pk-main.jpg",
+        "videoLinks": [
+            "https://example.com/pk-video1.mp4",
+            "https://example.com/pk-video2.mp4"
+        ]
+    },
+    {
+        "id": 22,
+        "title": "Chak De! India",
+        "year": 2007,
+        "genre": ["Drama", "Sport"],
+        "director": "Shimit Amin",
+        "actors": ["Shah Rukh Khan", "Vidya Malvade"],
+        "rating": 8.2,
+        "plot": "Kabir Khan, a former hockey player, is now the coach of the Indian women's national hockey team. He faces several challenges as he tries to make the team a world-class contender.",
+        "languages": ["Hindi", "English"],
+        "images": [
+            "https://example.com/chakde.jpg",
+            "https://example.com/chakde-2.jpg"
+        ],
+        "mainImage": "https://example.com/chakde-main.jpg",
+        "videoLinks": [
+            "https://example.com/chakde-video1.mp4",
+            "https://example.com/chakde-video2.mp4"
+        ]
+    },
+    {
+    "id": 23,
+    "title": "Inception",
+    "year": 2010,
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "director": "Christopher Nolan",
+    "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+    "rating": 8.8,
+    "plot": "A thief who enters the dreams of others to steal their secrets must plant an idea into someone's mind in order to pull off the perfect heist.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/inception.jpg",
+        "https://example.com/inception-2.jpg"
+    ],
+    "mainImage": "https://example.com/inception-main.jpg",
+    "videoLinks": [
+        "https://example.com/inception-video1.mp4",
+        "https://example.com/inception-video2.mp4"
+    ]
+},
+{
+    "id": 24,
+    "title": "The Dark Knight",
+    "year": 2008,
+    "genre": ["Action", "Crime", "Drama"],
+    "director": "Christopher Nolan",
+    "actors": ["Christian Bale", "Heath Ledger"],
+    "rating": 9.0,
+    "plot": "When the Joker terrorizes Gotham City, Batman must confront one of his greatest adversaries in a battle of chaos and order.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/darkknight.jpg",
+        "https://example.com/darkknight-2.jpg"
+    ],
+    "mainImage": "https://example.com/darkknight-main.jpg",
+    "videoLinks": [
+        "https://example.com/darkknight-video1.mp4",
+        "https://example.com/darkknight-video2.mp4"
+    ]
+},
+{
+    "id": 25,
+    "title": "Avatar",
+    "year": 2009,
+    "genre": ["Action", "Adventure", "Fantasy"],
+    "director": "James Cameron",
+    "actors": ["Sam Worthington", "Zoe Saldana"],
+    "rating": 7.8,
+    "plot": "A paraplegic marine is dispatched to the moon Pandora on a unique mission and becomes torn between following orders and protecting an alien civilization.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/avatar.jpg",
+        "https://example.com/avatar-2.jpg"
+    ],
+    "mainImage": "https://example.com/avatar-main.jpg",
+    "videoLinks": [
+        "https://example.com/avatar-video1.mp4",
+        "https://example.com/avatar-video2.mp4"
+    ]
+}
+,{
+    "id": 26,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "genre": ["Drama"],
+    "director": "Frank Darabont",
+    "actors": ["Tim Robbins", "Morgan Freeman"],
+    "rating": 9.3,
+    "plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/shawshank.jpg",
+        "https://example.com/shawshank-2.jpg"
+    ],
+    "mainImage": "https://example.com/shawshank-main.jpg",
+    "videoLinks": [
+        "https://example.com/shawshank-video1.mp4",
+        "https://example.com/shawshank-video2.mp4"
+    ]
+},
+{
+    "id": 27,
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "genre": ["Crime", "Drama"],
+    "director": "Quentin Tarantino",
+    "actors": ["John Travolta", "Samuel L. Jackson"],
+    "rating": 8.9,
+    "plot": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/pulpfiction.jpg",
+        "https://example.com/pulpfiction-2.jpg"
+    ],
+    "mainImage": "https://example.com/pulpfiction-main.jpg",
+    "videoLinks": [
+        "https://example.com/pulpfiction-video1.mp4",
+        "https://example.com/pulpfiction-video2.mp4"
+    ]
+},
+{
+    "id": 28,
+    "title": "Forrest Gump",
+    "year": 1994,
+    "genre": ["Drama", "Romance"],
+    "director": "Robert Zemeckis",
+    "actors": ["Tom Hanks", "Robin Wright"],
+    "rating": 8.8,
+    "plot": "The life of Forrest Gump, a man with a low IQ, who rose to great success despite his disabilities and the challenges he faced.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/forrestgump.jpg",
+        "https://example.com/forrestgump-2.jpg"
+    ],
+    "mainImage": "https://example.com/forrestgump-main.jpg",
+    "videoLinks": [
+        "https://example.com/forrestgump-video1.mp4",
+        "https://example.com/forrestgump-video2.mp4"
+    ]
+}
+,{
+    "id": 29,
+    "title": "The Godfather",
+    "year": 1972,
+    "genre": ["Crime", "Drama"],
+    "director": "Francis Ford Coppola",
+    "actors": ["Marlon Brando", "Al Pacino"],
+    "rating": 9.2,
+    "plot": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "languages": ["English", "Italian"],
+    "images": [
+        "https://example.com/godfather.jpg",
+        "https://example.com/godfather-2.jpg"
+    ],
+    "mainImage": "https://example.com/godfather-main.jpg",
+    "videoLinks": [
+        "https://example.com/godfather-video1.mp4",
+        "https://example.com/godfather-video2.mp4"
+    ]
+},
+{
+    "id": 30,
+    "title": "The Matrix",
+    "year": 1999,
+    "genre": ["Action", "Sci-Fi"],
+    "director": "The Wachowskis",
+    "actors": ["Keanu Reeves", "Laurence Fishburne"],
+    "rating": 8.7,
+    "plot": "A computer programmer discovers that reality as he knows it is a simulation created by machines to subjugate humanity, and he joins a group of rebels to fight back.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/matrix.jpg",
+        "https://example.com/matrix-2.jpg"
+    ],
+    "mainImage": "https://example.com/matrix-main.jpg",
+    "videoLinks": [
+        "https://example.com/matrix-video1.mp4",
+        "https://example.com/matrix-video2.mp4"
+    ]
+},
+{
+    "id": 31,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "genre": ["Action", "Adventure", "Fantasy"],
+    "director": "Peter Jackson",
+    "actors": ["Elijah Wood", "Ian McKellen"],
+    "rating": 8.8,
+    "plot": "A young hobbit, Frodo Baggins, embarks on a perilous journey to destroy a powerful ring and save Middle-earth from the dark lord Sauron.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/lotr.jpg",
+        "https://example.com/lotr-2.jpg"
+    ],
+    "mainImage": "https://example.com/lotr-main.jpg",
+    "videoLinks": [
+        "https://example.com/lotr-video1.mp4",
+        "https://example.com/lotr-video2.mp4"
+    ]
+}
+,{
+    "id": 32,
+    "title": "The Avengers",
+    "year": 2012,
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "director": "Joss Whedon",
+    "actors": ["Robert Downey Jr.", "Chris Evans"],
+    "rating": 8.0,
+    "plot": "Earth's mightiest heroes must come together and learn to work as a team to save the world from an alien invasion led by Loki.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/avengers.jpg",
+        "https://example.com/avengers-2.jpg"
+    ],
+    "mainImage": "https://example.com/avengers-main.jpg",
+    "videoLinks": [
+        "https://example.com/avengers-video1.mp4",
+        "https://example.com/avengers-video2.mp4"
+    ]
+},
+{
+    "id": 33,
+    "title": "The Social Network",
+    "year": 2010,
+    "genre": ["Biography", "Drama"],
+    "director": "David Fincher",
+    "actors": ["Jesse Eisenberg", "Andrew Garfield"],
+    "rating": 7.7,
+    "plot": "The story of the founding of Facebook and the legal battles that followed, as told through the perspectives of those involved.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/socialnetwork.jpg",
+        "https://example.com/socialnetwork-2.jpg"
+    ],
+    "mainImage": "https://example.com/socialnetwork-main.jpg",
+    "videoLinks": [
+        "https://example.com/socialnetwork-video1.mp4",
+        "https://example.com/socialnetwork-video2.mp4"
+    ]
+},
+{
+    "id": 34,
+    "title": "Interstellar",
+    "year": 2014,
+    "genre": ["Adventure", "Drama", "Sci-Fi"],
+    "director": "Christopher Nolan",
+    "actors": ["Matthew McConaughey", "Anne Hathaway"],
+    "rating": 8.6,
+    "plot": "A group of explorers undertakes a journey through a wormhole in space in an attempt to ensure humanity's survival as Earth faces environmental collapse.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/interstellar.jpg",
+        "https://example.com/interstellar-2.jpg"
+    ],
+    "mainImage": "https://example.com/interstellar-main.jpg",
+    "videoLinks": [
+        "https://example.com/interstellar-video1.mp4",
+        "https://example.com/interstellar-video2.mp4"
+    ]
+}
+,{
+    "id": 35,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "genre": ["Drama"],
+    "director": "Frank Darabont",
+    "actors": ["Tim Robbins", "Morgan Freeman"],
+    "rating": 9.3,
+    "plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/shawshank.jpg",
+        "https://example.com/shawshank-2.jpg"
+    ],
+    "mainImage": "https://example.com/shawshank-main.jpg",
+    "videoLinks": [
+        "https://example.com/shawshank-video1.mp4",
+        "https://example.com/shawshank-video2.mp4"
+    ]
+},
+{
+    "id": 36,
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "genre": ["Crime", "Drama"],
+    "director": "Quentin Tarantino",
+    "actors": ["John Travolta", "Samuel L. Jackson"],
+    "rating": 8.9,
+    "plot": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/pulpfiction.jpg",
+        "https://example.com/pulpfiction-2.jpg"
+    ],
+    "mainImage": "https://example.com/pulpfiction-main.jpg",
+    "videoLinks": [
+        "https://example.com/pulpfiction-video1.mp4",
+        "https://example.com/pulpfiction-video2.mp4"
+    ]
+},
+{
+    "id": 37,
+    "title": "Forrest Gump",
+    "year": 1994,
+    "genre": ["Drama", "Romance"],
+    "director": "Robert Zemeckis",
+    "actors": ["Tom Hanks", "Robin Wright"],
+    "rating": 8.8,
+    "plot": "The life of Forrest Gump, a man with a low IQ, who rose to great success despite his disabilities and the challenges he faced.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/forrestgump.jpg",
+        "https://example.com/forrestgump-2.jpg"
+    ],
+    "mainImage": "https://example.com/forrestgump-main.jpg",
+    "videoLinks": [
+        "https://example.com/forrestgump-video1.mp4",
+        "https://example.com/forrestgump-video2.mp4"
+    ]
+},
+{
+    "id": 38,
+    "title": "The Godfather",
+    "year": 1972,
+    "genre": ["Crime", "Drama"],
+    "director": "Francis Ford Coppola",
+    "actors": ["Marlon Brando", "Al Pacino"],
+    "rating": 9.2,
+    "plot": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "languages": ["English", "Italian"],
+    "images": [
+        "https://example.com/godfather.jpg",
+        "https://example.com/godfather-2.jpg"
+    ],
+    "mainImage": "https://example.com/godfather-main.jpg",
+    "videoLinks": [
+        "https://example.com/godfather-video1.mp4",
+        "https://example.com/godfather-video2.mp4"
+    ]
+}
+,{
+    "id": 39,
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": 2002,
+    "genre": ["Action", "Adventure", "Fantasy"],
+    "director": "Peter Jackson",
+    "actors": ["Elijah Wood", "Ian McKellen"],
+    "rating": 8.7,
+    "plot": "Frodo and Sam continue their journey to Mordor while the rest of the fellowship allies with the Rohan and Helms Deep to defend against the evil Saruman's forces.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/twotowers.jpg",
+        "https://example.com/twotowers-2.jpg"
+    ],
+    "mainImage": "https://example.com/twotowers-main.jpg",
+    "videoLinks": [
+        "https://example.com/twotowers-video1.mp4",
+        "https://example.com/twotowers-video2.mp4"
+    ]
+},
+{
+    "id": 40,
+    "title": "The Grand Budapest Hotel",
+    "year": 2014,
+    "genre": ["Comedy", "Drama"],
+    "director": "Wes Anderson",
+    "actors": ["Ralph Fiennes", "Tony Revolori"],
+    "rating": 8.1,
+    "plot": "The adventures of Gustave H, a legendary concierge at a famous European hotel, and Zero Moustafa, the lobby boy who becomes his most trusted friend.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/budapesthotel.jpg",
+        "https://example.com/budapesthotel-2.jpg"
+    ],
+    "mainImage": "https://example.com/budapesthotel-main.jpg",
+    "videoLinks": [
+        "https://example.com/budapesthotel-video1.mp4",
+        "https://example.com/budapesthotel-video2.mp4"
+    ]
+},
+{
+    "id": 41,
+    "title": "Gladiator",
+    "year": 2000,
+    "genre": ["Action", "Drama"],
+    "director": "Ridley Scott",
+    "actors": ["Russell Crowe", "Joaquin Phoenix"],
+    "rating": 8.5,
+    "plot": "A former Roman General seeks justice after being betrayed and falsely accused of murder, leading to his rise as a gladiator in the Colosseum.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/gladiator.jpg",
+        "https://example.com/gladiator-2.jpg"
+    ],
+    "mainImage": "https://example.com/gladiator-main.jpg",
+    "videoLinks": [
+        "https://example.com/gladiator-video1.mp4",
+        "https://example.com/gladiator-video2.mp4"
+    ]
+},
+{
+    "id": 42,
+    "title": "The Revenant",
+    "year": 2015,
+    "genre": ["Adventure", "Drama", "Western"],
+    "director": "Alejandro González Iñárritu",
+    "actors": ["Leonardo DiCaprio", "Tom Hardy"],
+    "rating": 8.0,
+    "plot": "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.",
+    "languages": ["English"],
+    "images": [
+        "https://example.com/revenant.jpg",
+        "https://example.com/revenant-2.jpg"
+    ],
+    "mainImage": "https://example.com/revenant-main.jpg",
+    "videoLinks": [
+        "https://example.com/revenant-video1.mp4",
+        "https://example.com/revenant-video2.mp4"
+    ]
+}
+
+ 
+]
+;
+
+            // Add movies to Firestore
+            moviesData.forEach((movie) => {
+                db.collection('movies').add(movie)
+                    .then((docRef) => {
+                        console.log(`Movie added with ID: ${docRef.id}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error adding movie: ', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

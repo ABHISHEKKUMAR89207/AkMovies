@@ -1,0 +1,99 @@
+ /* Basic styles for the navbar */
+ .custom-navbar {
+    background-color: #1ba6bf;
+    overflow: hidden;
+    padding: 20px; /* Increase padding for the navbar */
+}
+
+.custom-navbar a {
+    float: left;
+    font-size: 20px; /* Increase font size for the links */
+    color: white;
+    text-align: center;
+    padding: 10px 16px; /* Adjust padding for the links */
+    text-decoration: none;
+}
+
+/* Responsive styles for the navbar */
+@media screen and (max-width: 600px) {
+    .custom-navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+  /* Form container */
+  .formdecorate {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(242, 242, 242, 0.9); /* Slightly transparent background */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 20px 20px  rgba(52, 212, 230, 0.9);
+   
+    transform: translateY(20px); /* Move the form down initially */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Form labels */
+.formdecorate label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Style label for the "Title" input */
+.formdecorate label[for="title"] {
+    color: #007BFF; /* Change label text color */
+    font-size: 18px; /* Change label font size */
+}
+
+/* Form inputs */
+.formdecorate input[type="text"],
+.formdecorate input[type="number"],
+.formdecorate textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px; /* Change input font size */
+    outline: none; /* Remove input focus outline */
+}
+
+/* Style the "Title" input */
+.formdecorate input#title {
+    background-color: #f9f9f9; /* Change input background color */
+}
+
+/* Form submit button */
+.formdecoratebutton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Form submit button on hover */
+.formdecoratebutton:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .formdecorate {
+        width: 90%;
+    }
+}
+
+/* Loading animation styles */
+.loading {
+    opacity: 1; /* Make the form visible when loading is complete */
+    transform: translateY(0);
+}

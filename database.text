@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Dilwale Dulhania Le Jayenge",
+    "year": 1995,
+    "genre": ["Romance", "Drama", "Comedy"],
+    "director": "Aditya Chopra",
+    "actors": ["Shah Rukh Khan", "Kajol"],
+    "rating": 8.2,
+    "plot": "A young man and woman meet on a trip to Europe and fall in love. However, they must overcome cultural and family obstacles to be together.",
+    "languages": ["Hindi", "Punjabi", "English"],
+    "images": [
+      "https://example.com/dilwale-dulhania-le-jayenge.jpg",
+      "https://example.com/dilwale-dulhania-le-jayenge-2.jpg"
+    ],
+    "mainImage": "https://example.com/dilwale-dulhania-le-jayenge-main.jpg",
+    "videoLinks": [
+      "https://example.com/dilwale-dulhania-le-jayenge-video1.mp4",
+      "https://example.com/dilwale-dulhania-le-jayenge-video2.mp4"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "3 Idiots",
+    "year": 2009,
+    "genre": ["Comedy", "Drama"],
+    "director": "Rajkumar Hirani",
+    "actors": ["Aamir Khan", "Kareena Kapoor Khan"],
+    "rating": 8.4,
+    "plot": "Two friends search for their long-lost companion who inspired them to think differently, even as the rest of the world called them 'idiots'.",
+    "languages": ["Hindi", "English"],
+    "images": [
+      "https://example.com/3-idiots.jpg",
+      "https://example.com/3-idiots-2.jpg"
+    ],
+    "mainImage": "https://example.com/3-idiots-main.jpg",
+    "videoLinks": [
+      "https://example.com/3-idiots-video1.mp4",
+      "https://example.com/3-idiots-video2.mp4"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Baahubali: The Beginning",
+    "year": 2015,
+    "genre": ["Action", "Drama", "Fantasy"],
+    "director": "S. S. Rajamouli",
+    "actors": ["Prabhas", "Rana Daggubati", "Anushka Shetty"],
+    "rating": 8.1,
+    "plot": "In ancient India, an adventurous and daring man becomes involved in a decades-old feud between two warring people.",
+    "languages": ["Telugu", "Tamil", "Hindi", "Malayalam"],
+    "images": [
+      "https://example.com/baahubali-the-beginning.jpg",
+      "https://example.com/baahubali-the-beginning-2.jpg"
+    ],
+    "mainImage": "https://example.com/baahubali-the-beginning-main.jpg",
+    "videoLinks": [
+      "https://example.com/baahubali-video1.mp4",
+      "https://example.com/baahubali-video2.mp4"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Lagaan: Once Upon a Time in India",
+    "year": 2001,
+    "genre": ["Drama", "Sport"],
+    "director": "Ashutosh Gowariker",
+    "actors": ["Aamir Khan", "Gracy Singh"],
+    "rating": 8.1,
+    "plot": "In colonial India, a group of villagers challenge the British in a game of cricket to relieve themselves from oppressive taxation.",
+    "languages": ["Hindi", "English", "Urdu"],
+    "images": [
+      "https://example.com/lagaan.jpg",
+      "https://example.com/lagaan-2.jpg"
+    ],
+    "mainImage": "https://example.com/lagaan-main.jpg",
+    "videoLinks": [
+      "https://example.com/lagaan-video1.mp4",
+      "https://example.com/lagaan-video2.mp4"
+    ]
+  }
+]

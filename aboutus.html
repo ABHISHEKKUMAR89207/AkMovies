@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Us</title>
+    <link rel="stylesheet" href="Navbar.css">
+    <style>/* Existing CSS styles here */
+/* Reset some default styles */
+/* Reset some default styles */
+
+
+/* Apply basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: orange;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color:  #414344;
+    box-shadow: 0 0 10px #09343b;;
+    border-radius: 10px;
+}
+
+.about, .team, .contact {
+    margin-bottom: 40px;
+    color: white;
+}
+
+.about h2, .team h2, .contact h2,.about p {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+}
+.team-member p{
+    color: white;
+}
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    max-width: 10%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px #09343b;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #555;
+    color: white;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0bbc87;
+    color: white;
+}
+
+
+/* Styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+/* ... (previous CSS code) ... */
+
+/* Style the payment modal */
+.modal-content {
+    background-color: #f1c40f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #333;
+}
+
+.payment-options {
+    margin: 20px 0;
+}
+
+.payment-options input[type="radio"] {
+    display: none;
+}
+
+.payment-options label {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.payment-options input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.payment-button {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.payment-button:hover {
+    background-color: #f1c40f;
+    color: #333;
+}
+/* ... (previous CSS code) ... */
+
+/* Style the donate button */
+.donate-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.donate-button {
+    background-color: #f1c40f;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.donate-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.donate-text {
+    color: #333;
+    margin-top: 10px;
+}
+.donate-text{
+    color: white;
+}
+/* ... (previous CSS code) ... */
+
+/* ... (previous CSS code) ... */
+
+/* Additional styles as needed for the payment form */
+
+        /* Additional styles as needed for the payment form */
+        </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ak Movies </div>
+            <div class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="ContactUS.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <main>
+        <h1>About Us</h1>
+        <section class="about">
+            <h2>Our Story</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt, elit eu convallis bibendum, purus urna euismod libero.</p>
+        </section>
+
+        <section class="team">
+            <h2>Our Team</h2>
+            <div class="team-member">
+                <img src="assets/images/profile.jpg" alt="Team Member 1">
+                <h3>John Doe</h3>
+                <p>CEO</p>
+            </div>
+            <!-- <div class="team-member">
+                <img src="assets/images/profile2.png" alt="Team Member 2">
+                <h3>Jane Smith</h3>
+                <p>COO</p>
+            </div> -->
+        </section>
+        <div class="donate-button-container">
+            <p class="donate-text">Support our cause</p>
+            <button id="open-payment-modal" class="donate-button">Donate</button>
+            
+        </div>
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form" action="submit.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Ak World. All rights reserved.</p>
+    </footer>
+
+    <!-- Payment Modal -->
+<!-- ... (previous HTML code) ... -->
+
+<!-- Payment Modal -->
+<div id="payment-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePaymentModal()">&times;</span>
+        <h2>Make a Payment</h2>
+        <p>Please select the amount you'd like to donate:</p>
+        <div class="payment-options">
+            <input type="radio" id="amount10" name="amount" value="10">
+            <label for="amount10">$10</label>
+
+            <input type="radio" id="amount25" name="amount" value="25">
+            <label for="amount25">$25</label>
+
+            <input type="radio" id="amount50" name="amount" value="50">
+            <label for="amount50">$50</label>
+
+            <input type="radio" id="custom-amount" name="amount" value="custom">
+            <label for="custom-amount">Custom Amount</label>
+            <input type="text" id="custom-amount-input" placeholder="Enter Amount">
+        </div>
+        <button id="make-payment-button" class="payment-button">Make Payment</button>
+    </div>
+</div>
+
+<!-- ... (previous HTML code) ... -->
+
+
+    <script >// Function to open the payment modal
+        function openPaymentModal() {
+            var modal = document.getElementById('payment-modal');
+            modal.style.display = 'block';
+        }
+        
+        // Function to close the payment modal
+        function closePaymentModal() {
+            var modal = document.getElementById('payment-modal');
+            modal.style.display = 'none';
+        }
+        
+        // Event listener to open the payment modal
+        document.getElementById('open-payment-modal').addEventListener('click', openPaymentModal);
+        </script>
+         <script src="Navbar.js"></script>
+</body>
+</html>

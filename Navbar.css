@@ -1,0 +1,91 @@
+/* nav-------------------------------------------------------- */
+
+
+
+
+
+nav {
+    
+    background-color: #09343b;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu-icon {
+    display: none; /* Hidden by default on larger screens */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight:bolder;
+}
+.menu a:hover {
+    text-decoration: none;
+    color: #bfac21;
+    font-weight:bolder;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .menu {
+        display: none; /* Hide the horizontal menu */
+position: absolute;
+top: 60px; /* Adjust this value to your preference to move the menu closer or farther from the icon */
+right: 20px; /* Adjust this value to your preference to change the horizontal position of the menu */
+background-color: #09343b;;
+padding: 10px;
+z-index: 1;/* Hide the horizontal menu */
+    }
+
+    .menu-icon {
+        display: flex; /* Show the hamburger icon */
+    }
+
+    /* Show the menu when the hamburger icon is clicked */
+    .menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        background-color: #09343b;
+        padding: 10px;
+        z-index: 1;
+    }
+}
+footer {
+    background-color: #09343b;
+    color: #fff;
+    text-align: center;
+    margin-top: 6em;
+    padding: 1px 0;
+    border-top: 3px solid #1f94a6;
+    
+}

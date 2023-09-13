@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Signup</title>
+    <!-- Include the Firebase SDK script -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- Include your Firebase configuration here -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#error-message {
+    color: red;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Signup</h1>
+        <form id="signup-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="error-message"></p>
+    </div>
+    
+    <script >
+        // Initialize Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyD1YmnryjHQ8fSOHXaYp4s7vOm-I4ghBPg",
+  authDomain: "movies-700da.firebaseapp.com",
+  projectId: "movies-700da",
+  storageBucket: "movies-700da.appspot.com",
+  messagingSenderId: "400931630235",
+  appId: "1:400931630235:web:b393ec20feee54f9e62a3e",
+  measurementId: "G-E5E48TYM33"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// Reference to Firestore
+const firestore = firebase.firestore();
+
+// Signup Form
+const signupForm = document.getElementById("signup-form");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const errorMessage = document.getElementById("error-message");
+
+signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    try {
+        // Create a new user with email and password
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+        // Clear form fields
+        emailInput.value = "";
+        passwordInput.value = "";
+
+        // Redirect or perform other actions after successful signup
+        // You can add your own logic here
+
+    } catch (error) {
+        errorMessage.textContent = error.message;
+    }
+});
+
+    </script>
+</body>
+</html>

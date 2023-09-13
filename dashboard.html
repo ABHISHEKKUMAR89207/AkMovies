@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard!</h1>
+    <script>
+        // Get the value of the "username" query parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get("username");
+
+        if (username === "trueadminhai") {
+            // The value is "trueadmin," so display the dashboard content
+            console.log("Welcome, trueadmin!");
+        } else {
+            // The value is not "trueadmin," so redirect to another page
+            console.log("Unknown user. Redirecting...");
+            window.location.href = "otherpage.html"; // Replace with the desired page
+        }
+    </script>
+</body>
+</html>

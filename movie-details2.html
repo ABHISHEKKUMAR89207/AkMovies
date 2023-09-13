@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+
+    <!-- Include Firebase SDK scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <!-- Include other Firebase services if needed -->
+    
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: orange;
+        }
+
+        h2 {
+            color: yellow;
+            font-style: italic;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .download-link {
+            color: cyan;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #movie-details {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Details</h1>
+    <div id="movie-details"></div>
+
+    <script type="module">
+        // Function to parse query parameters from the URL
+        function getQueryParameter(name) {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            return urlSearchParams.get(name);
+        }
+
+        // Function to fetch and display movie details
+        function fetchMovieDetails() {
+            const movieFieldId = getQueryParameter('fieldId');
+            const firebaseConfig = {
+  apiKey: "AIzaSyD1YmnryjHQ8fSOHXaYp4s7vOm-I4ghBPg",
+  authDomain: "movies-700da.firebaseapp.com",
+  projectId: "movies-700da",
+  storageBucket: "movies-700da.appspot.com",
+  messagingSenderId: "400931630235",
+  appId: "1:400931630235:web:b393ec20feee54f9e62a3e",
+  measurementId: "G-E5E48TYM33"
+};
+            
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            // Reference to the "movies" collection
+            const moviesRef = db.collection('movies');
+
+            if (movieFieldId) {
+                const movieDetailsContainer = document.getElementById('movie-details');
+
+                console.log('Fetching movie details for ID:', movieFieldId);
+
+                moviesRef.where("id", "==", parseInt(movieFieldId)).get().then((querySnapshot) => {
+                    console.log('Query result:', querySnapshot.docs);
+
+                    if (!querySnapshot.empty) {
+                        const movieDoc = querySnapshot.docs[0];
+                        const movie = movieDoc.data();
+
+                        // Display movie details in the HTML
+                        movieDetailsContainer.innerHTML = `
+                        <img src="pxfuel (1).jpg" alt="${movie.title}" width="100">
+                            <h2>${movie.title} (${movie.year})</h2>
+                            <p><strong>Genre:</strong> ${movie.genre.join(', ')}</p>
+                            <p><strong>Director:</strong> ${movie.director}</p>
+                            <p><strong>Actors:</strong> ${movie.actors.join(', ')}</p>
+                            <p><strong>Rating:</strong> ${movie.rating}</p>
+                            <p><strong>Plot:</strong> ${movie.plot}</p>
+                            <p><strong>Awards:</strong></p>
+                            <ul>
+                                <li>National Film Awards: ${movie.awards['National Film Awards']}</li>
+                                <li>Filmfare Awards: ${movie.awards['Filmfare Awards']}</li>
+                            </ul>
+                            <ul>
+                            <img src="pxfuel (3).jpg" alt="${movie.image}" width="200">
+                        </ul>
+                            <ul>
+                            <img src="pxfuel (2).jpg" alt="${movie.title}" width="200">
+                        </ul>
+                            <ul>
+                            <img src="pxfuel.jpg" alt="${movie.title}" width="200">
+                        </ul>
+                            
+                            <p><strong>Download:</strong> <a href="#" class="download-link" data-id="${movie.fieldId}">Download</a></p>
+                            
+                        `;
+                    } else {
+                        movieDetailsContainer.innerHTML = '<p>Movie not found.</p>';
+                    }
+                }).catch((error) => {
+                    console.error('Error getting movie details: ', error);
+                });
+            } else {
+                console.error('Movie field ID not provided in query parameters.');
+            }
+        }
+
+        // Call the function to fetch and display movie details
+        fetchMovieDetails();
+    </script>
+</body>
+</html>
