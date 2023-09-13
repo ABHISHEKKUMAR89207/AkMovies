@@ -5,12 +5,7 @@ Welcome to the Movie Download Website project repository! This repository contai
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-3. [Usage](#usage)
-4. [Contributing](#contributing)
-5. [License](#license)
+
 
 ## Project Overview
 
@@ -55,12 +50,7 @@ The Movie Download Website is a platform for users to access and download movies
 </div>
 ## Getting Started
 
-### Prerequisites
 
-Before setting up the project, make sure you have the following prerequisites installed:
-
-- Node.js: Download and install it from [nodejs.org](https://nodejs.org/).
-- Firebase CLI: Install it globally using `npm install -g firebase-tools`.
 
 ### Installation
 
