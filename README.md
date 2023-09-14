@@ -29,9 +29,10 @@ The Movie Download Website is a platform for users to access and download movies
 
 <div align="center">
   <img src="img/ak1.png" alt="Image Description" width="300">
+  <p align="left"> tincidunt interdum.</p>
 </div>
 
-<p align="left"> tincidunt interdum.</p>
+
 
 
 ### Screenshots
