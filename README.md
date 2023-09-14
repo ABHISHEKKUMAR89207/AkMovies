@@ -29,7 +29,7 @@ The Movie Download Website is a platform for users to access and download movies
 
    <div style="display: flex; max-width: 800px; margin: 0 auto; padding: 20px;">
         <div style="flex: 1;">
-            <img src="img/ak1.png" alt="Image Description" style="max-width: 100%; height: auto;">
+             <img src="img/ak1.png" width="200">
         </div>
         <div style="flex: 1; padding: 20px; text-align: left;">
             <p>Your description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tellus ac odio tincidunt interdum.</p>
