@@ -27,10 +27,7 @@ The Movie Download Website is a platform for users to access and download movies
 - Firebase: Firebase is used for authentication, storage, and hosting.
 - HTML, CSS, JavaScript: Front-end development.
 
-<div align="center">
-  <img src="img/ak1.png" alt="Image Description" width="300">
-  <p align="left"> tincidunt interdum.</p>
-</div>
+
 
 
 
